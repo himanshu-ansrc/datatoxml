@@ -20,7 +20,6 @@ const parentTagsForXML = `<?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">`;
 
 const closeParentTagsForXML = `</xs:schema>`;
-
 const dataToXml = (req, res)=>{
             const xmlToSave = crypto.randomBytes(16).toString('hex')+'.xml';
             let questionselementjson = req.body['dataList'];
