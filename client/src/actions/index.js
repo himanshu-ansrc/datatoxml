@@ -3,8 +3,7 @@ import axios from 'axios'
 
 
 export const dataToXml = (dataList, callback)=>{
-       delete dataList.count;
-       delete dataList.options;
+       delete dataList['loadtypeofdata'];
        return async (dispatch)=>{
             try {
               const request = await axios.post('http://localhost:3000/api/data-to-xml',{
