@@ -45,6 +45,9 @@ const styles = theme => ({
     },
     verticalDivider: {
        marginTop: 25
+    },
+    inputState: {
+
     }
 });
 
@@ -59,10 +62,12 @@ class Login extends Component{
       }
       componentDidMount(){
          this.props.jsondata.ques_type = "tf"
+
+         console.log(document.getElementById('input-updates').getElementsByTagName('text'));
       }
       handleChange = event => {
-        let qType = event.target.value=="tf"? 1: (event.target.value=="fib"? 2: 3);
-        this.props.jsondata.ques_type = qType;
+        let  qType = event.target.value=="tf"? 1: (event.target.value=="fib"? 2: 3);
+        this.props.jsondata.ques_type = event.target.value;
         this.setState({
           [event.target.name]: event.target.value,
           loadtypeofdata: qType
@@ -97,6 +102,7 @@ class Login extends Component{
       }
       render(){
           const {classes} = this.props;
+          console.log(classes);
           return(
              <Fragment>
                  <Header/>
@@ -121,15 +127,17 @@ class Login extends Component{
                            <MenuItem value='fib'>Fill in blanks</MenuItem>
                          </Select>
                      </FormControl>
-                     <TextField id="learning-standard" multiline  rowsMax="20" type="text" label="Learning Standard" name="learning-standard" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
-                     <TextField id="concept-type" multiline  rowsMax="20" type="text" label="Concept Type" name="concept-type" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
-                     <TextField id="complexity" multiline  rowsMax="20" type="text" label="Complexity" name="complexity" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
-                     <TextField id="Depth Of Knowledge Level" multiline  rowsMax="20" type="text" label="Depth Of Knowledge Level" name="depth-of-knowledge-level" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
-                     <TextField id="Domain" multiline  rowsMax="20" type="text" label="Domain" name="domain" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
-                     <Divider className={classes.verticalDivider}/>
-                      {this.state.loadtypeofdata==1 && <Multiplechoise/>}
-                      {this.state.loadtypeofdata==2 && <Fillinblanks/>}
-                      {this.state.loadtypeofdata==3 && <Truefalse/>}
+                        <span id="input-updates">
+                        <TextField id="learning-standard" multiline  rowsMax="20" type="text" label="Learning Standard" name="learning-standard" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
+                        <TextField id="concept-type" multiline  rowsMax="20" type="text" label="Concept Type" name="concept-type" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
+                        <TextField id="complexity" multiline  rowsMax="20" type="text" label="Complexity" name="complexity" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
+                        <TextField id="Depth Of Knowledge Level" multiline  rowsMax="20" type="text" label="Depth Of Knowledge Level" name="depth-of-knowledge-level" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
+                        <TextField id="Domain" multiline  rowsMax="20" type="text" label="Domain" name="domain" className={classes.textField} onChange={(e)=>{this.props.jsondata.meta[e.target.name] = e.target.value}} margin="normal"/><br/>
+                        <Divider className={classes.verticalDivider}/>
+                         {this.state.loadtypeofdata==3 && <Multiplechoise/>}
+                         {this.state.loadtypeofdata==2 && <Fillinblanks/>}
+                         {this.state.loadtypeofdata==1 && <Truefalse/>}
+                        </span>
                     </CardContent>
                      <CardActions className={classes.submitlogin}>
                        <Button color="primary" variant="contained" onClick={this.exportXML} className={classes.submit} component="a">export</Button>

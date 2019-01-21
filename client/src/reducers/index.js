@@ -6,8 +6,21 @@ const rootReducer = combineReducers({
             ques_type : null,
             meta: {},
             question: {},
-            answer: {},
-            guide: {}
+            'question-img':{},
+            answer: {
+                txt: {},
+                feedback: {
+                    yes: {
+                      'feedback-yes-img':{}
+                    },
+                    no:{
+                      'feedback-no-img':{}
+                    }
+                }
+            },
+            guide: {
+                'step-img':{}
+            }
           }
       }
 });
